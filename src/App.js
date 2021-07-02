@@ -1,8 +1,15 @@
 import React from "react";
+import Board from './components/Board';
+import './styles/root.scss';
 
-export default () => (
-  <>
-    <h1>Welcome to React Tic-Tac-Toe App!</h1>
-    <p>Hello</p>
-  </>
-);
+
+const App = () => {
+  return (
+    <div className="app">
+      <h1>Tic Tac Toe</h1>
+      <Board />
+    </div>
+  );
+};
+
+export default App;

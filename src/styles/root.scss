@@ -1,0 +1,44 @@
+#root {
+    padding: 0px;
+    margin: 0px;
+}
+
+button {
+    background-color: none;
+    border: none;
+    outline: none;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.app {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.board {
+    .board_row {
+        display: flex;
+        flex-direction: row;
+        border-bottom: 2px solid black;
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+    .btn {
+        width: 80px;
+        height: 80px;
+        border-right: 2px solid black;
+        background-color: white;
+        font-size: 2.5rem;
+        padding: 0;
+        overflow: hidden;
+        transition: all 0.2s;
+        &:last-child {
+            border-right: none;
+        } 
+    }
+}
