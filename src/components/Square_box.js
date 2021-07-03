@@ -7,10 +7,10 @@ import React from 'react';
 //by default in (), whatever we write that name will be an object's name
 // so inside (), we can destructure the object as using {} & and the key_name 
 //we want to destructure
-const Square_box = ({val}) =>{
+const Square_box = ({ val, onClick }) =>{
 return (
   <>
-    <button type="button" className="btn"> {val} </button>
+    <button type="button" className="btn" onClick={onClick}> {val} </button> 
   </>
 )
 };
