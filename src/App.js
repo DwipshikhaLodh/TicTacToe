@@ -1,5 +1,6 @@
 import React , { useState } from "react";
 import Board from './components/Board';
+import History from './components/History';
 import { CalculateWinner } from "./helpers";
 import './styles/root.scss';
 
@@ -62,12 +63,17 @@ const App = () => {
     setmovenum(prev => prev + 1); //to update move number by each time
   };
 
+  const moveTo = (move) => { //will transfered as custom attribute & move is a parameter that will receive value of moveindex which will be passed at the time of calling when button will be clicked
+    setmovenum(move)//it set the movenum to 1 so that history having object at movenum 1 will be displayed in the board game 
+  };
+
 
   return (
     <div className="app">
       <h1>Tic Tac Toe</h1>
       <h3>{message}</h3>
       <Board board={current.board} handlesquareclick={handlesquareclick} />
+      <History history={history} moveTo={moveTo} movenum={movenum}/>
     </div>
   );
 };
