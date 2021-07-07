@@ -13,8 +13,7 @@ const App = () => {
 
 
   //this above codeline(in 10) will get modified as:
-  const [history, sethistory] = useState([{board: Array(9).fill(null), isXNext: true },
-  ]);   //useState here will return an array of objects, each objects have two keys: board & isXNext  to history and sethistory will be able to update the array of history 
+  const [history, sethistory] = useState([{board: Array(9).fill(null), isXNext: true },]);   //useState here will return an array of objects, each objects have two keys: board & isXNext  to history and sethistory will be able to update the array of history 
 
   const [movenum, setmovenum] = useState(0);//to track on current move number
 
@@ -28,7 +27,8 @@ const App = () => {
 
   //const winner= CalculateWinner(board);              //here we have the returned value that until now did we get any winner(if we got then in winner we'll have either O or X) or if we didn't got any winner than who is gonna play the next move(this will be showed by applying ternery on isXNext)      //will get modified to codeline 
 
-  const winner= CalculateWinner(current.board);  
+  //const winner= CalculateWinner(current.board);      //before implementing feature of highlighting the winner conmbination
+  const { winner, winningcomb}= CalculateWinner(current.board); //since now CalculateWinner will return an object with two keys. so we'll destructure the array over here
 
 
   //const message = winner ? `Winner is ${winner}` : `Next Player is ${current.isXNext ? 'X' : 'O'}`;         //isXNext modified to current.isXNext       //before using seperate component of message, the logic for message was here
@@ -68,12 +68,17 @@ const App = () => {
     setmovenum(move)//it set the movenum to 1 so that history having object at movenum 1 will be displayed in the board game 
   };
 
+  const newgame= () => {
+    sethistory([{board: Array(9).fill(null), isXNext: true },]);//to reset to initial value of board by using sethistory() of State  
+    setmovenum(0);//to reset the index to 0 
+  }
 
   return (
     <div className="app">
       <h1>Tic Tac Toe</h1>
       <Statusmessage winner={winner} current={current}/> 
-      <Board board={current.board} handlesquareclick={handlesquareclick} />
+      <Board board={current.board} handlesquareclick={handlesquareclick} winningcomb={winningcomb} />
+      <button type="button" onClick={newgame}>Start New Game</button>
       <History history={history} moveTo={moveTo} movenum={movenum}/>
     </div>
   );

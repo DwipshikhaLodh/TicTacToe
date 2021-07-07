@@ -16,9 +16,19 @@ export function CalculateWinner(square){  //it takes "square" as a variable whic
         
         if(square[a] && square[a] === square[b] && square[a] === square[c])  //check for each combination listed above does have same value or not
         {
-            return square[a];      //if does then will return the value stored in square(can be either O or X)
+            //return square[a];      //if does then will return the value stored in square(can be either O or X) or who is winner
+
+            //now instead of returning only the winner, we'll return an object with two keys: first will be the winner ie., square[a] & second will be the combination ie., either [a, b, c] or lines[i]
+            
+            return {
+                winner: square[a],
+                winningcomb: [a, b, c]
+            }
         }
     }
 
-    return null; //if in any of the combination, the value doesn't match then will return null
+    return {
+        winner: null,
+        winningcomb: []
+    }; //if in any of the combination, the value doesn't match then will return null
 }

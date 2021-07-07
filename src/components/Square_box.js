@@ -7,13 +7,15 @@ import React from 'react';
 //by default in (), whatever we write that name will be an object's name
 // so inside (), we can destructure the object as using {} & and the key_name 
 //we want to destructure
-const Square_box = ({ val, onClick }) =>{
+const Square_box = ({ val, onClick, iswinningsquare }) =>{
 return (
   <>
-    <button type="button" className="btn" onClick={onClick}> {val} </button> 
+    <button type="button" className="btn" onClick={onClick} style={{ fontWeight: iswinningsquare ? 'bold' : 'normal'}}> {val} </button> 
   </>
 )
 };
+
+//if iswinningsquare is true then fontweight is bold else normal
 
 //onClick in button tag is the eventlistener while onClick inside {} is a key which is destructured & stores a function "handlesquareclick()"
 
