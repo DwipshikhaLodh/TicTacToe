@@ -15,6 +15,8 @@ return (
 )
 };
 
+//onClick in button tag is the eventlistener while onClick inside {} is a key which is destructured & stores a function "handlesquareclick()"
+
 //if custom attribute is as: val = {1} & props.val => 1.
 //so for acessing value of a key of an object in gen we do
 //as: object_name.Key_name. Simillarly here we do as: props.val

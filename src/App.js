@@ -3,6 +3,7 @@ import Board from './components/Board';
 import History from './components/History';
 import { CalculateWinner } from "./helpers";
 import './styles/root.scss';
+import Statusmessage from './components/Statusmessage';
 
 
 const App = () => {
@@ -30,7 +31,7 @@ const App = () => {
   const winner= CalculateWinner(current.board);  
 
 
-  const message = winner ? `Winner is ${winner}` : `Next Player is ${current.isXNext ? 'X' : 'O'}`;         //isXNext modified to current.isXNext
+  //const message = winner ? `Winner is ${winner}` : `Next Player is ${current.isXNext ? 'X' : 'O'}`;         //isXNext modified to current.isXNext       //before using seperate component of message, the logic for message was here
 
   const handlesquareclick = (position)=> {//here will be the logic to update the board
 
@@ -71,7 +72,7 @@ const App = () => {
   return (
     <div className="app">
       <h1>Tic Tac Toe</h1>
-      <h3>{message}</h3>
+      <Statusmessage winner={winner} current={current}/> 
       <Board board={current.board} handlesquareclick={handlesquareclick} />
       <History history={history} moveTo={moveTo} movenum={movenum}/>
     </div>
@@ -79,3 +80,5 @@ const App = () => {
 };
 
 export default App;
+
+//before using seperate component of messages, it was rendered as:  <h2>{message}</h2>
