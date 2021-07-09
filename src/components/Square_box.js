@@ -10,7 +10,9 @@ import React from 'react';
 const Square_box = ({ val, onClick, iswinningsquare }) =>{
 return (
   <>
-    <button type="button" className="btn" onClick={onClick} style={{ fontWeight: iswinningsquare ? 'bold' : 'normal'}}> {val} </button> 
+    <button type="button" onClick={onClick} 
+    className={`square ${iswinningsquare? 'winning' : ''} ${val === 'X' ? 'text_green' : 'text_orange'}`}
+    > {val} </button> 
   </>
 )
 };
@@ -39,4 +41,6 @@ return (
 // but we can destructure props object as: ({val, children}) & can be 
 // used in return part as: {children}   
 
+
+//className={`btn ${iswinningsquare ? 'winning' : ''} ${value === 'X' ? 'text_green' : 'text_orange'}`}
 export default Square_box;

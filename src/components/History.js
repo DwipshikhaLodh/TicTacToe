@@ -3,17 +3,14 @@ import React from 'react';
 const History = ({history, moveTo, movenum}) => {
     //we need to display some buttons as unordered list on every click on the square(as on first click, history will have 2 object, on 2nd click, history will have 3 object and soon, so with respect to each object at any move/instant, we want corresponding buttons in a list ie., on 2nd click we'll have 3 objects and so we'll need to display 3 buttons in a list and soon), as for this we have to keep track of array of history at every move to check the number of objects it has at that moment, so we'll use .map() for tracking purpose & map() also have an argument of "moveindex" which implies the index of objects inside history array at that instant.   And as we need buttons corresponding with the objects inside history array so we will return the <li> consisting of <button> tag inside the .map(). Now in button we need some logical comments/text so for that, we'll use ternery operator (since .map() will iterate over each objects inside the array history so suppose at a moment, there are 4 objects ie., after we played our 3rd move,    so we have:      4 objects with their respective moveindex from 0 to 3.  => first object , moveindex=0, so ternery checks:  moveindex === 0 => gives true & thus 1st string gets displayed.    => second object,   moveindex=1,   so ternary checks:   moveindex === 0  => gives false & thus 2nd string gets displayed along with the moveindex, which is 1.  => third object, ternary checks:  moveindex === 0 => gives false thus 2nd string gets displayed along with its respective moveindex which is 2 & soon... ) 
     return (
-        <ul>
+        <div className="history_wrapper">
+            <ul className="history">
             {
                 history.map((_, moveindex) => {
                     return (
                         <li key={moveindex}>
                             <button
-                            style={
-                                {
-                                    fontWeight: movenum === moveindex ? "bold" : "normal",
-                                }
-                            }
+                            className={`btn_move ${movenum === moveindex ? 'active' : ' '}`}
                             type="button" onClick={() => {
                                 moveTo(moveindex);
                             }}>{moveindex === 0 ? 'Go To Game Start' : `Go To Move ${moveindex}`}</button>
@@ -22,10 +19,20 @@ const History = ({history, moveTo, movenum}) => {
                 })
             }
         </ul>
-    );
+        </div>
+        
+        );
 };
 
 export default History;
+
+//style
+//    {
+//        fontWeight: movenum === moveindex ? "bold" : "normal",
+//    }
+//}       // for writing dynamic class we removed this part from button tag
+
+//in buttonclassname, we haveused dynamic class where dynamically we'll decide that whether the classname wil be active or else if the condition movenum === moveindex gets false then no class will be assigned & that is done by assigning empty space   //since the logic deciding whether the classname will get assigned or empty space will get assigned will be done by JS so we need to use {}, inside which we'll write the condition
 
 //in style it will check as:
 //     suppose we are yet to start the game, so we only 1 object in history with movenum=0(movenum=>index of array) 
@@ -45,7 +52,9 @@ export default History;
 //                    when moveindex=0, i.e., we are iterating the first object of the history array so:
 //                          is movenum === moveindex ? =>false & so styling is normal
 //                   when moveindex=1, i.e., we are iterating the 2nd object of the history array so:
-//                           is movenum === moveindex ? =>false & so styling is normal
+//                           is movenum === moveindex ? => false & so styling is normal
 //                   when moveindex=2, i.e., we are iterating the 3nd object of the history array so:
 //                           is movenum === moveindex ? =>true & so styling is bold
 // and all others button text will have normal fontweight
+//
+//

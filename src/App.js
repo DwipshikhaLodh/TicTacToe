@@ -75,11 +75,14 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1>Tic Tac Toe</h1>
+      <h1>Tic <span className="text_green">Tac</span> Toe</h1>
       <Statusmessage winner={winner} current={current}/> 
       <Board board={current.board} handlesquareclick={handlesquareclick} winningcomb={winningcomb} />
-      <button type="button" onClick={newgame}>Start New Game</button>
+      <button type="button" onClick={newgame} className={`btn_reset ${winner || ( current.board.every(e1 => e1 !== null))? 'active' : ''}`}>Start New Game</button>
+      <h2 >Current Game History</h2>
       <History history={history} moveTo={moveTo} movenum={movenum}/>
+      <div className="bg_balls b1"/>
+      <div className="bg_balls b2"/>
     </div>
   );
 };
@@ -87,3 +90,5 @@ const App = () => {
 export default App;
 
 //before using seperate component of messages, it was rendered as:  <h2>{message}</h2>
+
+//winner || ( current.board.every(e1 => e1 !== null) => this means if there is winner or if there is tie then the classname "active" of the button will get assigned 
